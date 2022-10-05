@@ -3,7 +3,7 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
-  background: rgb(252, 252, 255) !important;
+  background: rgb(222, 231, 243) !important;
 }
 
 body.modal-open .container {
@@ -89,7 +89,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 }
 
 .list-group-item-light.list-group-item-action.active {
-  color: #636464;
+  color: #111212;
   background-color: #e5e5e5;
   border-color: #e5e5e5;
 }
@@ -125,15 +125,28 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   background-color: #ececf0!important;
   border-top: 5px solid #b0b6da;
   color: rgb(10, 10, 10);
-  border-radius: 10px;
+  /* border-radius: 10px; */
+}
+
+.bg-lights {
+  /* background: #198754!important;
+  border-top: 5px solid #ffb93a; */
+  background-color: #dfedfd!important;
+  border-top: 5px solid #4e66f1;
+  color: rgb(10, 10, 10);
+  /* border-radius: 10px; */
+}
+
+.bg-nav {
+  background-color: #dfedfd!important;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: white;
+  color: rgb(110, 131, 178);
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-  color: white;
+  color: rgb(110, 131, 178);
 }
 
 .btn-success {
@@ -245,11 +258,11 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: hsl(0, 0%, 100%)
+  color: rgb(64, 111, 230)
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-  color: rgb(204, 205, 213) !important
+  color: rgb(123, 155, 238) !important
 }
 
 .dropdown-menu {
@@ -257,22 +270,22 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 }
 
 .dropdown-item:hover {
-  color: white;
+  color: #aecbf0;
   /* background-color: #198754; */
   background-color: #4158af;
   border-radius: 5px;
 }
 
 .nav-link.active {
-  color: white;
+  color: #aecbf0;
 }
 
 .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
-  color: white;
+  color: rgb(123, 155, 238);
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  color: white;
+  color: rgb(123, 155, 238);
 }
 
 .mt-minus-87 {

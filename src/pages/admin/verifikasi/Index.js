@@ -1,25 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 import Cookies from "js-cookie";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-import { Link, useHistory, } from "react-router-dom";
-import Api from "../../api";
+import {  Redirect, useHistory } from "react-router-dom";
+import Api from "../../../api";
+import OTPInput from "otp-input-react";
 
-function Login(props) {
+function Verifikasi(props) {    
   document.title = "Login Web";
-
-
-  // STATE LOGIN
-  const [nip, setNip] = useState([]);
-  const [finger_id, setFingerid] = useState("");
-  const [setPlatform] = useState("");
   
-  useEffect(() => {
-    localStorage.setItem('nip', JSON.stringify(nip))
-  }, [nip]);
+  const [setNip] = useState("");
+  const [otp, setOtp] = useState("");
+  const [setStatus] = useState("");
+  const [setPlatform] = useState("");
 
-
+  const dataNip = (localStorage.getItem("nip"));
+  // console.log(dataNip);
   //state loading
   const [isLoading, setLoading] = useState(false);
 
@@ -35,9 +32,10 @@ function Login(props) {
     //set state isLoading to "true"
     setLoading(true);
 
-    await Api.post("/login/pegawai", {
-      nip: nip,
-      finger_id: finger_id,
+    await Api.post("/login/validation-otp", {
+      nip: dataNip.replaceAll("\"", ""),
+      otp: otp,
+      status: 1,
       platform: 1,
     })
       .then((response) => {
@@ -45,7 +43,7 @@ function Login(props) {
         setLoading(false);
 
         //show toast
-        toast.success("Verif Nip Successfully.", {
+        toast.success("Login Successfully.", {
           duration: 4000,
           position: "top-right",
           style: {
@@ -54,12 +52,12 @@ function Login(props) {
             color: "#fff",
           },
         });
-        
-        Cookies.set("data", response.data.data);
-        
-        console.log("response", response);
+
+
+        Cookies.set("token", response.data.token);
+
         //redirect dashboard page
-        history.push("/admin/verifikasi");
+        history.push("/admin/dashboard");
       })
       .catch((error) => {
         //set state isLoading to "false"
@@ -70,22 +68,17 @@ function Login(props) {
       });
   };
 
+  if (Cookies.get("token")) {
+    //redirect dashboard page
+    return <Redirect to="/admin/dashboard"></Redirect>;
+}
+
   return (
     <React.Fragment>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-4 mt-150">
             <div className="text-center mb-4">
-              <img
-                src={require("../../assets/images/blitar.png")}
-                style={{
-                  width: 80,
-                  height: 80,
-                  marginRight: 10,
-                  marginBottom: 12,
-                  marginTop: -100,
-                }}
-              />
               <h4>
                 <i className="fa fa-phone"></i> <strong>Blitar In Hand</strong>
               </h4>
@@ -96,26 +89,30 @@ function Login(props) {
             >
               <div className="card-body">
                 <div className="text-center">
-                  <h6 className="fw-bold">LOGIN ADMIN</h6>
+                  <h6 className="fw-bold">Verification Code</h6>
                   <hr />
+                  <OTPInput
+                      value={otp}
+                      onChange={setOtp}
+                      autoFocus
+                      OTPLength={4}
+                      otpType="number"
+                      disabled={false}
+                      secure
+                      style={{ position:'relative', left: "25%" }}
+                    />
                 </div>
-
                 {validation.msg && (
                   <div className="alert alert-danger">{validation.msg}</div>
                 )}
-
                 <form onSubmit={loginHandler}>
-                  <label className="mb-1">NIP</label>
                   <div className="input-group mb-3">
-                    <span className="input-group-text">
-                      <i className="fa fa-envelope"></i>
-                    </span>
                     <input
-                      value={nip}
+                      value={dataNip.replaceAll("\"", "")}
                       onChange={(e) => setNip(e.target.value)}
-                      type="text"
+                      type="hidden"
                       className="form-control"
-                      placeholder="NIP"
+                      placeholder={dataNip.replaceAll("\"", "")}
                     />
                   </div>
                   {validation.nip && (
@@ -123,69 +120,40 @@ function Login(props) {
                       {validation.nip[0]}
                     </div>
                   )}
-                  <label className="mb-1">Finger id</label>
+                  <div className="form-group text-center" >
+                   
+                  </div>
                   <div className="input-group mb-3">
-                    <span className="input-group-text">
-                      <i className="fa fa-envelope"></i>
-                    </span>
                     <input
-                      value={finger_id}
-                      onChange={(e) => setFingerid(e.target.value)}
-                      type="text"
+                      value={1}
+                      onChange={(e) => setStatus(e.target.value)}
+                      type="hidden"
                       className="form-control"
-                      placeholder="Finger id"
+                      placeholder="otp"
                     />
                   </div>
-                  {validation.finger_id && (
-                    <div className="alert alert-danger">
-                      {validation.finger_id[0]}
-                    </div>
-                  )}
                   <div className="input-group mb-3">
+                    
                     <input
                       value={1}
                       onChange={(e) => setPlatform(e.target.value)}
                       type="hidden"
                       className="form-control"
-                      placeholder="Finger id"
+                      placeholder="otp"
                     />
                   </div>
-                  {validation.platform && (
-                    <div className="alert alert-danger">
-                      {validation.platform[0]}
-                    </div>
-                  )}
                   <button
                     className="btn btn-success shadow-sm rounded-sm px-4 w-100"
                     type="submit"
                     disabled={isLoading}
                   >
                     {" "}
-                    {isLoading ? "LOADING..." : "SUBMIT"}{" "}
+                    {isLoading ? "LOADING..." : "LOGIN"}{" "}
                   </button>
                 </form>
                 <hr />
               </div>
             </div>
-            <div className="text-center mt-3">
-              Belum Punyak Akun ?{" "}
-              <Link to="/admin/register">
-                <a href="">Register !</a>
-              </Link>
-            </div>
-            <hr />
-            <button
-              className="btn btn-primary shadow-sm rounded-sm px-4 w-100"
-              type="submit"
-            >
-              <i className="fa fa-lock"></i> Login Dengan SSO
-            </button>
-            <button
-              className="btn btn-primary shadow-sm mt-1 rounded-sm px-4 w-100"
-              type="submit"
-            >
-              <i className="fa fa-google-sign-in"></i> Login Dengan Google
-            </button>
           </div>
         </div>
       </div>
@@ -193,4 +161,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default Verifikasi;
