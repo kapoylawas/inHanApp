@@ -1,2 +1,2 @@
 /*    /index.html    200
-/.env/* http://bih.blitarkota.go.id/api/: 200
+/.env/* http://bih.blitarkota.go.id/api/:splat 200
