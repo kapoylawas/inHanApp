@@ -5,12 +5,17 @@ import { NavDropdown } from 'react-bootstrap';
 //import Sidebar
 import Sidebar from '../components/admin/Sidebar';
 //hook link
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { toast } from 'react-hot-toast';
 
 const LayoutAdmin =({children}) =>{ 
 
     //state toggle
     const [sidebarToggle, setSidebarToggle] = useState(false);
+
+    //history
+    const history = useHistory();
 
     //function toggle hanlder
     const sidebarToggleHandler = (e) => {
@@ -32,6 +37,26 @@ const LayoutAdmin =({children}) =>{
         }
     }
 
+    const logoutHandler = async (e) => {
+    
+            //remove token
+            Cookies.remove('token');
+
+            //show toast
+            toast.success("Logout Successfully.", {
+                duration: 4000,
+                position: "top-right",
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+
+            //redirect login page
+            history.push('/admin/login');
+    }
+
     return(
         <React.Fragment>
             <div className="d-flex sb-sidenav-toggled" id="wrapper">
@@ -48,7 +73,7 @@ const LayoutAdmin =({children}) =>{
                             <NavDropdown title="BUDI" className="fw-bold" id="basic-nav-dropdown">
                                 <NavDropdown.Item as={Link} to="/" target="_blank"><i className="fa fa-external-link-alt me-2"></i> Visit Web</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item><i className="fa fa-sign-out-alt me-2"></i> Logout</NavDropdown.Item>
+                                <NavDropdown.Item onClick={logoutHandler}><i className="fa fa-sign-out-alt me-2"></i> Logout</NavDropdown.Item>
                             </NavDropdown>
                             </ul>
                         </div>

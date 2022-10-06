@@ -50,7 +50,7 @@ function WebHeader() {
             <Nav>
               {/* <Nav.Link className="fw-bold text-white me-4"><i className="fa fa-search"></i> SEARCH</Nav.Link> */}
               {/* <Link to="/admin/login" className="btn btn-md btn-warning"><i className="fa fa-lock"></i> LOGIN</Link> */}
-              <Link to="/admin/login">
+              <Link to="/admin/portal">
                 <Button className="btnregister" variant="outline-light">
                   <i className="fa fa-lock"></i> login
                 </Button>

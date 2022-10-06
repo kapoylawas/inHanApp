@@ -2,6 +2,7 @@
 import { Switch, Route } from "react-router-dom";
 
 //import component private routes
+import PortalLogin from "../pages/admin/PortalLogin";
 import Login from "../pages/admin/Login";
 import Home from "../pages/web/Home/Index";
 import Register from "../pages/admin/Register";
@@ -23,6 +24,9 @@ function Routes() {
              {/* route "/admin/login" */}
              <Route exact path="/admin/login">
                 <Login /> 
+            </Route>
+             <Route exact path="/admin/portal">
+                <PortalLogin /> 
             </Route>
             <Route exact path="/admin/register">
                  <Register />

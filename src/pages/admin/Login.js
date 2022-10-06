@@ -57,7 +57,7 @@ function Login(props) {
         
         Cookies.set("data", response.data.data);
         
-        // console.log("response", response);
+        console.log("response", response);
         //redirect dashboard page
         history.push("/admin/verifikasi");
       })
