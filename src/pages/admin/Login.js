@@ -3,22 +3,20 @@
 import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { Link, useHistory, } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Api from "../../api";
 
 function Login(props) {
   document.title = "Login Web";
 
-
   // STATE LOGIN
   const [nip, setNip] = useState([]);
   const [finger_id, setFingerid] = useState("");
   const [setPlatform] = useState("");
-  
-  useEffect(() => {
-    localStorage.setItem('nip', JSON.stringify(nip))
-  }, [nip]);
 
+  useEffect(() => {
+    localStorage.setItem("nip", JSON.stringify(nip));
+  }, [nip]);
 
   //state loading
   const [isLoading, setLoading] = useState(false);
@@ -54,9 +52,9 @@ function Login(props) {
             color: "#fff",
           },
         });
-        
+
         Cookies.set("data", response.data.data);
-        
+
         console.log("response", response);
         //redirect dashboard page
         history.push("/admin/verifikasi");
@@ -76,16 +74,18 @@ function Login(props) {
         <div className="row justify-content-center">
           <div className="col-md-4 mt-150">
             <div className="text-center mb-4">
-              <img
-                src={require("../../assets/images/blitar.png")}
-                style={{
-                  width: 80,
-                  height: 80,
-                  marginRight: 10,
-                  marginBottom: 12,
-                  marginTop: -100,
-                }}
-              />
+              <Link to="/">
+                <img
+                  src={require("../../assets/images/blitar.png")}
+                  style={{
+                    width: 80,
+                    height: 80,
+                    marginRight: 10,
+                    marginBottom: 12,
+                    marginTop: -100,
+                  }}
+                />
+              </Link>
               <h4>
                 <i className="fa fa-phone"></i> <strong>Blitar In Hand</strong>
               </h4>

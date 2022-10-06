@@ -8,7 +8,7 @@ function Home() {
     <React.Fragment>
       <LayoutWeb>
         <div className="container mt-5">
-          <h5> SAsa </h5>
+          <h5 type="hidden"> SAsa </h5>
           <Jumbotron />
 
           <div className="text-center">
