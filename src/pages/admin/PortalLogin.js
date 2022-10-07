@@ -44,7 +44,7 @@ function PortalLogin(params) {
                 <i className="fa fa-user"></i> Login Sebagai Pegawai
               </button>
             </Link>
-            <Link to="/admin/login">
+            <Link to="/admin/loginUmum">
               <button
                 className="btn btn-success shadow-sm mt-3 rounded-sm px-4 w-100"
                 type="submit"

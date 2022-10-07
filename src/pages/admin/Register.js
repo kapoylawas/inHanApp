@@ -62,7 +62,7 @@ function Register() {
 
         console.log("response", response);
         //redirect dashboard page
-        history.push("/admin/login");
+        history.push("/admin/loginUmum");
       })
       .catch((error) => {
         //set state isLoading to "false"
@@ -122,7 +122,11 @@ function Register() {
 
                     />
                   </div>
-
+                  {validation.nik && (
+                    <div className="alert alert-danger">
+                      {validation.nik[0]}
+                    </div>
+                  )}
                   <label className="mb-1">No KK</label>
                   <div className="input-group mb-3">
                     <span className="input-group-text">
@@ -136,7 +140,11 @@ function Register() {
                       placeholder="No Kartu Keluarga"
                     />
                   </div>
-
+                  {validation.no_kk && (
+                    <div className="alert alert-danger">
+                      {validation.no_kk[0]}
+                    </div>
+                  )}
                   <label className="mb-1">Nama Ibu</label>
                   <div className="input-group mb-3">
                     <span className="input-group-text">
@@ -150,7 +158,11 @@ function Register() {
                       placeholder="Nama Ibu Kandung"
                     />
                   </div>
-
+                  {validation.nama_ibu && (
+                    <div className="alert alert-danger">
+                      {validation.nama_ibu[0]}
+                    </div>
+                  )}
                   <label className="mb-1">EMAIL ADDRESS</label>
                   <div className="input-group mb-3">
                     <span className="input-group-text">
@@ -164,7 +176,11 @@ function Register() {
                       placeholder="Email Address"
                     />
                   </div>
-
+                  {validation.email && (
+                    <div className="alert alert-danger">
+                      {validation.email[0]}
+                    </div>
+                  )}
                   <label className="mb-1">No HP</label>
                   <div className="input-group mb-3">
                     <span className="input-group-text">
@@ -178,6 +194,11 @@ function Register() {
                       placeholder="No Hand Phone"
                     />
                   </div>
+                  {validation.nomor_hp && (
+                    <div className="alert alert-danger">
+                      {validation.nomor_hp[0]}
+                    </div>
+                  )}
                   <button
                     className="btn btn-primary shadow-sm rounded-sm px-4 w-100"
                     type="submit"
