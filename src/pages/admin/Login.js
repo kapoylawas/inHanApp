@@ -174,18 +174,6 @@ function Login(props) {
               </Link>
             </div>
             <hr />
-            <button
-              className="btn btn-primary shadow-sm rounded-sm px-4 w-100"
-              type="submit"
-            >
-              <i className="fa fa-lock"></i> Login Dengan SSO
-            </button>
-            <button
-              className="btn btn-primary shadow-sm mt-1 rounded-sm px-4 w-100"
-              type="submit"
-            >
-              <i className="fa fa-google-sign-in"></i> Login Dengan Google
-            </button>
           </div>
         </div>
       </div>
