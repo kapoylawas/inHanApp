@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import {  Redirect, useHistory } from "react-router-dom";
 import Api from "../../../api";
 import OTPInput from "otp-input-react";
+import { useTimer } from "../../../components/utilities/useTimer";
 
 function Verifikasi(props) {    
   document.title = "Login Web";
@@ -15,8 +16,12 @@ function Verifikasi(props) {
   const [setStatus] = useState("");
   const [setPlatform] = useState("");
 
+  const [resendTime, setResendTime] = useTimer({
+    multiplier: 2
+  })
+
   const dataNip = (localStorage.getItem("nip"));
-  // console.log(dataNip);
+
   //state loading
   const [isLoading, setLoading] = useState(false);
 
@@ -25,6 +30,44 @@ function Verifikasi(props) {
 
   //history
   const history = useHistory();
+
+  const handleResend = async () => {
+
+    //set state isLoading to "true"
+    setLoading(true);
+
+    setResendTime(0)
+
+    await Api.post("/login/re-generate-otp", {
+      nip: dataNip.replaceAll("\"", ""),
+    })
+      .then((response) => {
+        //set state isLoading to "false"
+        setLoading(false);
+
+        //show toast
+        toast.success("Resend Successfully.", {
+          duration: 4000,
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+
+        console.log(response);
+        Cookies.set("token", response.data.token);
+
+      })
+      .catch((error) => {
+        //set state isLoading to "false"
+        setLoading(false);
+
+        //set error response validasi to state "validation"
+        setValidation(error.response.data);
+      });
+  }
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -133,7 +176,6 @@ function Verifikasi(props) {
                     />
                   </div>
                   <div className="input-group mb-3">
-                    
                     <input
                       value={1}
                       onChange={(e) => setPlatform(e.target.value)}
@@ -152,6 +194,11 @@ function Verifikasi(props) {
                   </button>
                 </form>
                 <hr />
+                {resendTime !== 60 && <span> {resendTime} </span>}
+                <button className="btn btn-primary shadow-sm" disabled={resendTime !== 60} style={{ position:'relative', left: "250px" }} onClick={handleResend}> 
+                {" "}
+                  Resend OTP
+                </button>
               </div>
             </div>
           </div>

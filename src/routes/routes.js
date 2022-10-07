@@ -13,6 +13,7 @@ import VerifikasiUmum from "../pages/admin/verifikasiUmum/Index";
 import PrivateRoute from "./PrivateRoutes";
 import Dashboard from "../pages/admin/dashboard";
 import LoginUmum from "../pages/admin/LoginUmum";
+import WebView from "../pages/web/webView/Index";
 
 //=======================================================================
 //WEB
@@ -49,6 +50,9 @@ function Routes() {
             {/* route "/WEB" */}
             <Route exact path="/">
                  <Home />
+            </Route>
+            <Route exact path="/web/webView">
+                 <WebView />
             </Route>
 
 

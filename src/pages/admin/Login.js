@@ -14,6 +14,7 @@ function Login(props) {
   const [finger_id, setFingerid] = useState("");
   const [setPlatform] = useState("");
 
+
   useEffect(() => {
     localStorage.setItem("nip", JSON.stringify(nip));
   }, [nip]);
@@ -26,6 +27,8 @@ function Login(props) {
 
   //history
   const history = useHistory();
+
+  
 
   const loginHandler = async (e) => {
     e.preventDefault();

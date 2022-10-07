@@ -1,15 +1,11 @@
 import React from "react";
-import Jumbotron from "../../../components/utilities/Jumbotron";
 //import layout web
 import LayoutWeb from "../../../layouts/Web";
 
-function Home() {
+function WebView() {
   return (
     <React.Fragment>
-      <LayoutWeb>
         <div className="container mt-5">
-          <h5 type="hidden"> SAsa </h5>
-          <Jumbotron />
 
           <div className="text-center">
             <h4 className="font-weight-bold text-dark">In Hand App</h4>
@@ -31,9 +27,8 @@ function Home() {
         </div>
 
         
-      </LayoutWeb>
     </React.Fragment>
   );
 }
 
-export default Home;
+export default WebView;
