@@ -125,7 +125,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   background-color: #ececf0!important;
   border-top: 5px solid #b0b6da;
   color: rgb(10, 10, 10);
-  /* border-radius: 10px; */
+  border-radius: 10px;
 }
 
 .bg-lights {

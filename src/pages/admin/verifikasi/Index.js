@@ -195,7 +195,7 @@ function Verifikasi(props) {
                 </form>
                 <hr />
                 {resendTime !== 60 && <span> {resendTime} </span>}
-                <button className="btn btn-primary shadow-sm" disabled={resendTime !== 60} style={{ position:'relative', left: "250px" }} onClick={handleResend}> 
+                <button className="btn btn-primary shadow-sm" disabled={resendTime !== 60} style={{ position:'relative', left: "170px" }} onClick={handleResend}> 
                 {" "}
                   Resend OTP
                 </button>
