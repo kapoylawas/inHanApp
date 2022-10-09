@@ -40,6 +40,7 @@ function Verifikasi(props) {
 
     await Api.post("/login/re-generate-otp", {
       nip: dataNip.replaceAll("\"", ""),
+      status: 1
     })
       .then((response) => {
         //set state isLoading to "false"
