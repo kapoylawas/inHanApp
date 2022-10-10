@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoutes";
 import Dashboard from "../pages/admin/dashboard";
 import LoginUmum from "../pages/admin/LoginUmum";
 import WebView from "../pages/web/webView/Index";
+import Pengaduan from "../pages/admin/pengaduan/Index";
 
 //=======================================================================
 //WEB
@@ -45,6 +46,9 @@ function Routes() {
             </Route>
             <PrivateRoute exact path="/admin/dashboard">
                 <Dashboard />
+            </PrivateRoute>
+            <PrivateRoute exact path="/admin/pengaduan">
+                <Pengaduan />
             </PrivateRoute>
 
             {/* route "/WEB" */}

@@ -1,17 +1,17 @@
 import React from "react";
 import LayoutAdmin from "../../../layouts/Admin";
 
-function Dashboard() {
+function Pengaduan() {
     document.title = "Dashboard Pegawai ";
 
 
     return(
         <React.Fragment>
             <LayoutAdmin>
-                <h1>HALAMAN DASHBOARD</h1>
+                <h1>HALAMAN PENGADUAN</h1>
             </LayoutAdmin>
         </React.Fragment>
     )
 }
 
-export default Dashboard
+export default Pengaduan

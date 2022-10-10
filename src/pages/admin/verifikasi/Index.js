@@ -34,8 +34,6 @@ function Verifikasi(props) {
   const handleResend = async () => {
 
     //set state isLoading to "true"
-    setLoading(true);
-
     setResendTime(0)
 
     await Api.post("/login/re-generate-otp", {
@@ -58,13 +56,10 @@ function Verifikasi(props) {
         });
 
         console.log(response);
-        Cookies.set("token", response.data.token);
 
       })
       .catch((error) => {
         //set state isLoading to "false"
-        setLoading(false);
-
         //set error response validasi to state "validation"
         setValidation(error.response.data);
       });
