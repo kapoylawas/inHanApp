@@ -1,4 +1,7 @@
 import React from "react";
+import CardBlikosda from "../../../components/utilities/CardBlikosda";
+import CardPpid from "../../../components/utilities/CardPpid";
+import CardUlpim from "../../../components/utilities/CardUlpim";
 import Jumbotron from "../../../components/utilities/Jumbotron";
 //import layout web
 import LayoutWeb from "../../../layouts/Web";
@@ -10,6 +13,17 @@ function Home() {
         <div className="container mt-5">
           <h5 type="hidden"> SAsa </h5>
           <Jumbotron />
+
+          <div className="row justify-content-center mt-4">
+                
+                    
+                        <CardPpid />
+                        <CardBlikosda />
+                        <CardUlpim />
+                        
+                  
+                
+          </div> 
 
           <div className="text-center">
             <h4 className="font-weight-bold text-dark">In Hand App</h4>

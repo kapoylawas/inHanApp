@@ -15,17 +15,14 @@ function Jumbotron(){
                 <span className="badge badge-danger bg-primary rounded shadow-sm">
                   React.js
                 </span>
-                <span className="badge badge-danger bg-primary rounded shadow-sm border-0">
-                  React.js
-                </span>
-                <span className="badge badge-danger bg-primary rounded shadow-sm border-0">
-                  React.js
-                </span>
               </div>
               <div className="col-md-5 d-none d-md-block text-right">
+                
                 <img
-                  src="https://santrikoding.com/images/bg-sk-2.png"
+                  // src="https://santrikoding.com/images/bg-sk-2.png"
+                  src={require("../../assets/images/jbtn.gif")}
                   className="w-100 text-right"
+                  style={{ width:200, height:250, }}
                 />
               </div>
             </div>

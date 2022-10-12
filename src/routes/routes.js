@@ -15,6 +15,10 @@ import Dashboard from "../pages/admin/dashboard";
 import LoginUmum from "../pages/admin/LoginUmum";
 import WebView from "../pages/web/webView/Index";
 import Pengaduan from "../pages/admin/pengaduan/Index";
+import Ppid from "../pages/web/ppid/Index";
+import Blikosda from "../pages/web/blikosda/Index";
+import Ulpim from "../pages/web/ulpim/Index";
+import FormPermohonan from "../pages/web/ppid/FormPermohonan";
 
 //=======================================================================
 //WEB
@@ -57,6 +61,18 @@ function Routes() {
             </Route>
             <Route exact path="/web/webView">
                  <WebView />
+            </Route>
+            <Route exact path="/web/ppid">
+                 <Ppid />
+            </Route>
+            <Route exact path="/web/blikosda">
+                 <Blikosda />
+            </Route>
+            <Route exact path="/web/ulpim">
+                 <Ulpim />
+            </Route>
+            <Route exact path="/web/formPermohonan">
+                 <FormPermohonan />
             </Route>
 
 
