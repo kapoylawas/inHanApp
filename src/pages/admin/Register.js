@@ -78,7 +78,7 @@ function Register() {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-4 mt-150">
-            <div className="text-center mb-4">
+            <div className="text-center mb-2">
               <Link to="/">
                 <img
                   src={require("../../assets/images/blitar.png")}
