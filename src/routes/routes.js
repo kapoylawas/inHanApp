@@ -71,7 +71,7 @@ function Routes() {
             <Route exact path="/web/ulpim">
                  <Ulpim />
             </Route>
-            <Route exact path="/web/formPermohonan">
+            <Route exact path="/web/formPermohonan/:id">
                  <FormPermohonan />
             </Route>
 

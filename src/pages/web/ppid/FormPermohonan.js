@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import LayoutWeb from "../../../layouts/Web";
 
 function FormPermohonan() {
@@ -9,6 +10,10 @@ function FormPermohonan() {
      const getType = event.target.value
      setShowhide(getType);
   }
+
+  const { id } = useParams();
+
+  console.log(id);
 
   return (
     <React.Fragment>

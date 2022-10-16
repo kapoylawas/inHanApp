@@ -1,13 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import Api from "../../../api";
 import LayoutWeb from "../../../layouts/Web";
+import PaginationComponent from "../../../components/utilities/Pagination";
 
 function Ppid() {
+  //title page
+  document.title = "PPID - Pengaduan";
+
+  const [ppids, setPpid] = useState([]);
+
+  // PAGINATION
+  const [currentPage, setCurrentPage] = useState(1);
+  // console.log(currentPage);
+  
+  //state perPage
+  const [perPage, setPerPage] = useState(0);
+
+  //state total
+  const [total, setTotal] = useState(0);
+
+  const fetchData = async (pageNumber) => {
+
+    const page = pageNumber ? pageNumber : currentPage;
+
+    await Api.get(`/ppid/daftar-informasi-publik?page=${page}`).then((response) => {
+
+      setPpid(response.data.data.data);
+
+      setCurrentPage(response.data.data.current_page);
+
+      //set perPage
+      setPerPage(response.data.data.per_page);
+
+      //total
+      setTotal(response.data.data.total);
+
+      console.log("data",response);
+    });
+  };
+
+  useEffect(() => {
+    //call function "fetchDataPlaces"
+    fetchData();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <React.Fragment>
       <LayoutWeb>
-        <br></br>
         <br></br>
         <br></br>
         <div className="container mt-7">
@@ -47,28 +89,38 @@ function Ppid() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td className="text-center">1</td>
-                        <td className="text-center">2017-05-13</td>
+                    {ppids.map((ppid, index) => ( 
+                      <tr key={index}>
                         <td className="text-center">
-                          SK PPID Sekretariat DPRDSK PPID Sekretariat DPRD
+                            {++index + (currentPage - 1) * perPage}
                         </td>
-                        <td className="text-center">informasi</td>
-                        <td className="text-center">Profil</td>
-                        <td className="text-center">SK PPID Pembantu</td>
-                        <td className="text-center">Sekretariat DPRD</td>
-                        <td className="text-center">Softcopy</td>
+                        <td>{ppid.waktu}</td>
+                        <td>{ppid.judul}</td>
+                        <td>{ppid.jenis_info}</td>
+                        <td>{ppid.kategori}</td>
+                        <td>{ppid.sub_kategori}</td>
+                        <td>{ppid.penanggung_jawab}</td>
+                        <td>{ppid.bentuk}</td>
                         <td className="text-center">
-                          <button className="btn btn-sm btn-danger">
-                            <Link to="/web/formPermohonan">
+                        <Link
+                              to={`/web/formPermohonan/${ppid.id}`}
+                              className="btn btn-sm btn-primary me-2"
+                            >
                               <i className="fa fa-download"></i>
-                            </Link>
-                          </button>
+                        </Link>
                         </td>
                       </tr>
+                    ))}
                     </tbody>
                   </table>
                 </div>
+                <PaginationComponent
+                  currentPage={currentPage}
+                  perPage={perPage}
+                  total={total}
+                  onChange={(pageNumber) => fetchData(pageNumber)}
+                  position="end"
+                />
               </div>
             </div>
           </div>
