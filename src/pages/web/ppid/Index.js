@@ -20,15 +20,24 @@ function Ppid() {
   //state total
   const [total, setTotal] = useState(0);
 
-  const fetchData = async (pageNumber) => {
+  //state search
+  const [search, setSearch] = useState("");
+
+  const fetchData = async (pageNumber,searchData) => {
 
     const page = pageNumber ? pageNumber : currentPage;
 
-    await Api.get(`/ppid/daftar-informasi-publik?page=${page}`).then((response) => {
+    //define variable "searchQuery"
+    const searchQuery = searchData ? searchData : search;
+
+    await Api.get(`/ppid/daftar-informasi-publik?search=${searchQuery}&page=${page}`, {
+      
+    })
+    .then((response) => {
 
       setPpid(response.data.data.data);
 
-      setCurrentPage(response.data.data.current_page);
+      setCurrentPage(response.data.data.page);
 
       //set perPage
       setPerPage(response.data.data.per_page);
@@ -36,7 +45,6 @@ function Ppid() {
       //total
       setTotal(response.data.data.total);
 
-      console.log("data",response);
     });
   };
 
@@ -46,6 +54,14 @@ function Ppid() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  //function "searchHandler"
+  const searchHandlder = (e) => {
+    e.preventDefault();
+
+    //call function "fetchDataPost"
+    fetchData(search);
+  };
 
   return (
     <React.Fragment>
@@ -61,23 +77,24 @@ function Ppid() {
                 </span>
               </div>
               <div className="card-body">
-                <form className="form-group">
-                  <div className="input-group mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="search by judul name"
-                    />
-                    <button type="submit" className="btn btn-md btn-success">
-                      <i className="fa fa-search"></i> SEARCH
-                    </button>
-                  </div>
-                </form>
+                  <form onSubmit={searchHandlder} className="form-group">
+                    <div className="input-group mb-3">
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="search by place title"
+                      />
+                      <button type="submit" className="btn btn-md btn-success">
+                        <i className="fa fa-search"></i> SEARCH
+                      </button>
+                    </div>
+                  </form>
                 <div className="table-responsive">
                   <table className="table table-bordered table-striped table-hovered">
                     <thead>
                       <tr>
-                        <th scope="col">No.</th>
                         <th scope="col">Di Buat</th>
                         <th scope="col">Judul</th>
                         <th scope="col">Jenis Informasi</th>
@@ -91,9 +108,6 @@ function Ppid() {
                     <tbody>
                     {ppids.map((ppid, index) => ( 
                       <tr key={index}>
-                        <td className="text-center">
-                            {++index + (currentPage - 1) * perPage}
-                        </td>
                         <td>{ppid.waktu}</td>
                         <td>{ppid.judul}</td>
                         <td>{ppid.jenis_info}</td>

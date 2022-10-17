@@ -19,6 +19,7 @@ import Ppid from "../pages/web/ppid/Index";
 import Blikosda from "../pages/web/blikosda/Index";
 import Ulpim from "../pages/web/ulpim/Index";
 import FormPermohonan from "../pages/web/ppid/FormPermohonan";
+import TandaTrima from "../pages/web/ppid/TandaTrima";
 
 //=======================================================================
 //WEB
@@ -73,6 +74,9 @@ function Routes() {
             </Route>
             <Route exact path="/web/formPermohonan/:id">
                  <FormPermohonan />
+            </Route>
+            <Route exact path="/web/tandaTrima">
+                 <TandaTrima />
             </Route>
 
 
