@@ -10,6 +10,10 @@ function Ppid() {
 
   const [ppids, setPpid] = useState([]);
 
+  const sort = ppids.sort()
+
+  // console.log(ppids);
+
   // PAGINATION
   const [currentPage, setCurrentPage] = useState(1);
   // console.log(currentPage);
@@ -45,6 +49,8 @@ function Ppid() {
       //total
       setTotal(response.data.data.total);
 
+      // console.log(response.data.data.page);
+
     });
   };
 
@@ -73,7 +79,7 @@ function Ppid() {
             <div className="card border-0 rounded shadow-sm border-top-success">
               <div className="card-header">
                 <span className="font-weight-bold">
-                  <i className="fa fa-folder"></i> Daftar Informasi Publik
+                  <i className="fa fa-folder"></i> Daftar Informasi Publik {currentPage}
                 </span>
               </div>
               <div className="card-body">
@@ -95,6 +101,7 @@ function Ppid() {
                   <table className="table table-bordered table-striped table-hovered">
                     <thead>
                       <tr>
+                        <th scope="col">No</th>
                         <th scope="col">Di Buat</th>
                         <th scope="col">Judul</th>
                         <th scope="col">Jenis Informasi</th>
@@ -106,8 +113,11 @@ function Ppid() {
                       </tr>
                     </thead>
                     <tbody>
-                    {ppids.map((ppid, index) => ( 
+                    {sort.map((ppid, index) => ( 
                       <tr key={index}>
+                        <td className="text-center">
+                            {++index + (currentPage - 1) * perPage}
+                          </td>
                         <td>{ppid.waktu}</td>
                         <td>{ppid.judul}</td>
                         <td>{ppid.jenis_info}</td>

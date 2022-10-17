@@ -7,6 +7,17 @@ import LayoutWeb from "../../../layouts/Web";
 function FormPermohonan() {
   document.title = "In Hand App - Permohonan";
 
+  const data = [
+    {
+      id: 1,
+      name: "perorangan",
+    },
+    {
+      id: 2,
+      name: "lembaga",
+    },
+  ];
+
   const [permohonan, setPermohonan] = useState("");
   const [nik, setNik] = useState("");
   const [tujuan, setTujuan] = useState("");
@@ -16,6 +27,9 @@ function FormPermohonan() {
   const [notlpn, setNotlpn] = useState("");
   const [work, setWork] = useState("");
   const [alamat, setAlamat] = useState("");
+
+  //state categories
+  const [categories, setCategories] = useState(data);
 
   //state validation
   const [setValidation] = useState({});
@@ -58,7 +72,7 @@ function FormPermohonan() {
     setLoading(true);
     const formData = new FormData();
 
-    formData.append("permohonan", permohonan);
+    formData.append("kategori", permohonan);
     formData.append("nik", nik);
     formData.append("tujuan", tujuan);
     formData.append("nama", nama);
@@ -121,8 +135,13 @@ function FormPermohonan() {
                             onChange={(e) => handleshowhide(e)}
                           >
                             <option value="">-- Tipe Pengaduan --</option>
-                            <option value="perorangan">Perorangan</option>
-                            <option value="lembaga">Lembaga</option>
+                            {/* <option value="perorangan">Perorangan</option>
+                            <option value="lembaga">Lembaga</option> */}
+                            {categories.map((category) => (
+                            <option value={category.name} key={category.id}>
+                              {category.name}
+                            </option>
+                          ))}
                           </select>
                         </div>
 

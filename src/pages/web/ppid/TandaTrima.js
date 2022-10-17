@@ -25,6 +25,7 @@ function FormPermohonan() {
                 <div className="input-group">
                 <div className="col-md-12">
                     <p>ID Permohonan : <i style={{ color: "black" }}> {tandaBukti.judul}</i></p>
+                    <p>Kategori : <i style={{ color: "black" }}> {tandaBukti.kategori_pengajuan}</i></p>
                     <p>Tujuan: <i style={{ color: "black" }}>{tandaBukti.tujuan}</i></p>
                     <p>Dibuat pada: <i style={{ color: "black" }}>{tandaBukti.dibuat_pada}</i></p>
                     <p>Format Salinan: <i style={{ color: "black" }}>{tandaBukti.format}</i></p>
