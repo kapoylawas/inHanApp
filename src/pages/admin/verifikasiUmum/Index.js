@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import {  Redirect, useHistory } from "react-router-dom";
 import Api from "../../../api";
 import OTPInput from "otp-input-react";
+import { useTimer } from "../../../components/utilities/useTimer";
 
 function VerifikasiUmum(props) {    
   document.title = "Login Web";
@@ -20,8 +21,43 @@ function VerifikasiUmum(props) {
   //state validation
   const [validation, setValidation] = useState({});
 
+  const [resendTime, setResendTime] = useTimer({
+    multiplier: 2,
+  });
+
   //history
   const history = useHistory();
+
+  const handleResend = async () => {
+    //set state isLoading to "true"
+    setResendTime(0);
+
+    await Api.post("/login/re-generate-otp", {
+      nip: dataNik.replaceAll('"', ""),
+      status: 2,
+    })
+      .then((response) => {
+        //set state isLoading to "false"
+        setLoading(false);
+
+        //show toast
+        toast.success("Resend Successfully.", {
+          duration: 4000,
+          position: "top-right",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+
+      })
+      .catch((error) => {
+        //set state isLoading to "false"
+        //set error response validasi to state "validation"
+        setValidation(error.response.data);
+      });
+  };
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -30,7 +66,7 @@ function VerifikasiUmum(props) {
     setLoading(true);
 
     await Api.post("/login/validation-otp", {
-      nik: dataNik.replaceAll("\"", ""),
+      nip: dataNik.replaceAll("\"", ""),
       otp: otp,
       status: 2,
       platform: 1,
@@ -51,6 +87,7 @@ function VerifikasiUmum(props) {
         });
 
         Cookies.set("token", response.data.token);
+        localStorage.setItem("status", JSON.stringify(2));
 
         //redirect dashboard page
         history.push("/admin/dashboard");
@@ -138,6 +175,16 @@ function VerifikasiUmum(props) {
                   </button>
                 </form>
                 <hr />
+                {resendTime !== 60 && <span> {resendTime} </span>}
+                <button
+                  className="btn btn-primary shadow-sm"
+                  disabled={resendTime !== 60}
+                  style={{ position: "relative", left: "170px" }}
+                  onClick={handleResend}
+                >
+                  {" "}
+                  Resend OTP
+                </button>
               </div>
             </div>
           </div>

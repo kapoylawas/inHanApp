@@ -23,7 +23,9 @@ const LayoutAdmin = ({ children }) => {
   //state user logged in
   const [user, setUser] = useState({});
 
-  const dataNip = localStorage.getItem("nip");
+  const dataNik = localStorage.getItem("nik");
+
+  const status = (localStorage.getItem("status"));
 
   //function toggle hanlder
   const sidebarToggleHandler = (e) => {
@@ -46,7 +48,7 @@ const LayoutAdmin = ({ children }) => {
 
   const fetchData = async () => {
     await Api.get(
-      `/profile?nip_nik=${dataNip.replaceAll('"', "")}&status=${1}`,
+      `/profile?nip_nik=${dataNik.replaceAll('"', "")}&status=${status}`,
       {
         headers: {
           //header Bearer + Token
@@ -67,8 +69,9 @@ const LayoutAdmin = ({ children }) => {
   }, []);
 
   const logoutHandler = async (e) => {
-    //remove token
+    //remove token and localstorage
     Cookies.remove("token");
+    localStorage.clear();
 
     //show toast
     toast.success("Logout Successfully.", {

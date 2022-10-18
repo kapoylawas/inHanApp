@@ -18,14 +18,16 @@ function WebHeader() {
   //token
   const token = Cookies.get("token");
 
-  const dataNip = localStorage.getItem("nip");
+  const dataNik = localStorage.getItem("nik");
 
   //state user logged in
   const [user, setUser] = useState({});
 
+  const status = (localStorage.getItem("status"));
+
   const fetchData = async () => {
     await Api.get(
-      `/profile?nip_nik=${dataNip.replaceAll('"', "")}&status=${1}`,
+      `/profile?nip_nik=${dataNik.replaceAll('"', "")}&status=${status}`,
       {
         headers: {
           //header Bearer + Token

@@ -60,7 +60,6 @@ function Register() {
           },
         });
 
-        console.log("response", response);
         //redirect dashboard page
         history.push("/admin/loginUmum");
       })

@@ -12,11 +12,8 @@ function Ppid() {
 
   const sort = ppids.sort()
 
-  // console.log(ppids);
-
   // PAGINATION
   const [currentPage, setCurrentPage] = useState(1);
-  // console.log(currentPage);
   
   //state perPage
   const [perPage, setPerPage] = useState(0);
@@ -49,8 +46,6 @@ function Ppid() {
       //total
       setTotal(response.data.data.total);
 
-      // console.log(response.data.data.page);
-
     });
   };
 
@@ -66,7 +61,7 @@ function Ppid() {
     e.preventDefault();
 
     //call function "fetchDataPost"
-    fetchData(search);
+    fetchData(1, search);
   };
 
   return (
@@ -79,7 +74,7 @@ function Ppid() {
             <div className="card border-0 rounded shadow-sm border-top-success">
               <div className="card-header">
                 <span className="font-weight-bold">
-                  <i className="fa fa-folder"></i> Daftar Informasi Publik {currentPage}
+                  <i className="fa fa-folder"></i> Daftar Informasi Publik
                 </span>
               </div>
               <div className="card-body">
@@ -90,7 +85,7 @@ function Ppid() {
                         className="form-control"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        placeholder="search by place title"
+                        placeholder="search by judul title"
                       />
                       <button type="submit" className="btn btn-md btn-success">
                         <i className="fa fa-search"></i> SEARCH

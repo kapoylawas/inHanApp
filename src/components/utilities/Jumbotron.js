@@ -1,15 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 function Jumbotron(){
+  
     return(
-        <div class="bg-light p-5 rounded-lg m-3 ">
+      <>
+        <div className="bg-light p-5 rounded-lg m-3 ">
             <div className="row mt-5 mb-3">
               <div className="col-md-7">
                 <h1>
                   Blitar{" "}
                   <span className="text btn btn-primary">In Hand APP</span>
                 </h1>
-                <p class="lead">
+                <p className="lead">
                   This is a simple hero unit, a simple jumbotron-styleasdadsa
                 </p>
                 <span className="badge badge-danger bg-primary rounded shadow-sm">
@@ -27,6 +29,7 @@ function Jumbotron(){
               </div>
             </div>
           </div>
+      </>
     )
 }
 

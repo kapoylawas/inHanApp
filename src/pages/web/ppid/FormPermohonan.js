@@ -24,15 +24,16 @@ function FormPermohonan() {
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [imagekitas, setImagekitas] = useState("");
+  const [akta, setAkta] = useState("");
   const [notlpn, setNotlpn] = useState("");
   const [work, setWork] = useState("");
   const [alamat, setAlamat] = useState("");
 
   //state categories
-  const [categories, setCategories] = useState(data);
+  const [categories] = useState(data);
 
   //state validation
-  const [setValidation] = useState({});
+  const [validation, setValidation] = useState({});
 
   //state loading
   const [isLoading, setLoading] = useState(false);
@@ -60,6 +61,26 @@ function FormPermohonan() {
     setImagekitas(imageData);
   };
 
+  const handleFileAkta = (e) => {
+    const file = e.target.files[0];
+
+    if (!file.type.match("zip.*|pdf.*")) {
+      setAkta("");
+
+      toast.error("Format File Tidak Cocok", {
+        duration: 4000,
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      return;
+    }
+    setAkta(file);
+  };
+
   const handleshowhide = (event) => {
     const getType = event.target.value;
     setPermohonan(getType);
@@ -78,6 +99,7 @@ function FormPermohonan() {
     formData.append("nama", nama);
     formData.append("email", email);
     formData.append("kitas", imagekitas);
+    formData.append("akta", akta);
     formData.append("notlpn", notlpn);
     formData.append("work", work);
     formData.append("alamat", alamat);
@@ -99,11 +121,11 @@ function FormPermohonan() {
           },
         });
         
-        console.log(response.data);
         localStorage.setItem("data", JSON.stringify(response.data.data));
         history.push("/web/tandaTrima");
       })
       .catch((error) => {
+        setLoading(false);
         setValidation(error.response.data);
       });
   };
@@ -135,8 +157,6 @@ function FormPermohonan() {
                             onChange={(e) => handleshowhide(e)}
                           >
                             <option value="">-- Tipe Pengaduan --</option>
-                            {/* <option value="perorangan">Perorangan</option>
-                            <option value="lembaga">Lembaga</option> */}
                             {categories.map((category) => (
                             <option value={category.name} key={category.id}>
                               {category.name}
@@ -170,7 +190,7 @@ function FormPermohonan() {
                             onChange={(e) => setTujuan(e.target.value)}
                             className="form-control"
                             rows="5"
-                            placeholder="Enter Address Place"
+                            placeholder="Tujuan"
                           ></textarea>
                         </div>
                       </div>
@@ -193,6 +213,7 @@ function FormPermohonan() {
                         </div>
                       </div>
                     </div>
+                   
 
                     {/* file */}
                     <div className="row">
@@ -200,7 +221,7 @@ function FormPermohonan() {
                         <div className="mb-3">
                           <label className="form-label fw-bold">
                             Unggah KTP/KITAS Pimpinan{" "}
-                            <p style={{ color: "#ffae00" }}>
+                            <p style={{ color: "red" }}>
                               (diupload jpg, jpeg, png dan maksimal 2MB.
                               *Pemberian Watermark pada file lebih dianjurkan)
                             </p>
@@ -215,21 +236,35 @@ function FormPermohonan() {
                         </div>
                       </div>
                     </div>
+                    {validation.kitas && (
+                      <div className="alert alert-danger">
+                        {validation.kitas[0]}
+                      </div>
+                    )}
                     {permohonan === "lembaga" && (
                       <div className="row">
                         <div className="col-md-12">
                           <div className="mb-3">
                             <label className="form-label fw-bold">
                               Upload Akta Notaris Lembaga / Organisasi
+                              <p style={{ color: "red" }}>
+                              diupload pdf, zip, rar dan maksimal 5MB.
+                              </p>
                             </label>
                             <div className="input-group">
                               <input
                                 className="form-control"
                                 type="file"
+                                onChange={handleFileAkta}
                               ></input>
                             </div>
                           </div>
                         </div>
+                      </div>
+                    )}
+                    {validation.akta && (
+                      <div className="alert alert-danger">
+                        {validation.akta[0]}
                       </div>
                     )}
 

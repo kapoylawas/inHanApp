@@ -7,9 +7,7 @@ function FormPermohonan() {
 
   const tandaBukti = JSON.parse(localStorage.getItem("data"));
 
-//   JSON.parse(localStorage.getItem('cartProduct'))
-
-  console.log(tandaBukti);
+  //   JSON.parse(localStorage.getItem('cartProduct'))
 
   return (
     <React.Fragment>
@@ -20,20 +18,67 @@ function FormPermohonan() {
           <div className="col-12 mt-5">
             <div className="card border-0 rounded shadow-sm border-top-success">
               <div className="card-header">
-                tanda bukti
+                <span className="font-weight-bold">
+                  <i className="fa fa-award"></i> <b>Tanda Bukti</b>
+                </span>
+
                 <div className="card-body">
-                <div className="input-group">
-                <div className="col-md-12">
-                    <p>ID Permohonan : <i style={{ color: "black" }}> {tandaBukti.judul}</i></p>
-                    <p>Kategori : <i style={{ color: "black" }}> {tandaBukti.kategori_pengajuan}</i></p>
-                    <p>Tujuan: <i style={{ color: "black" }}>{tandaBukti.tujuan}</i></p>
-                    <p>Dibuat pada: <i style={{ color: "black" }}>{tandaBukti.dibuat_pada}</i></p>
-                    <p>Format Salinan: <i style={{ color: "black" }}>{tandaBukti.format}</i></p>
-                    <p>Link Unduh Dokumen: <a className="btn btn-sm btn-primary me-2" target="_blank" href={tandaBukti.link_download} style={{ color: "black" }} rel="noreferrer"><i className="fa fa-download"></i></a></p>
-                    <p>Status Permohonan: <i style={{ color: "black" }}>{tandaBukti.status_permohonan}</i></p>
-                    <p>Keterangan: <i style={{ color: "black" }}>{tandaBukti.keterangan}</i></p>
-                </div>
-                </div>
+                  <div className="input-group">
+                    <div className="col-md-12">
+                      <table className="table table-bordered table-striped">
+                        <tbody>
+                          <tr>
+                            <td>ID Permohonan</td>
+                            <td>
+                              <div className="alert alert-primary">
+                                <b>{tandaBukti.id_permohonan} - <b>(Harap untuk menyimpan ID ini.)</b></b>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Kategori</td>
+                            <td>{tandaBukti.kategori_pengajuan}</td>
+                          </tr>
+                          <tr>
+                            <td>Tujuan</td>
+                            <td>{tandaBukti.tujuan}</td>
+                          </tr>
+                          <tr>
+                            <td>Dibuat Pada</td>
+                            <td>{tandaBukti.dibuat_pada}</td>
+                          </tr>
+                          <tr>
+                            <td>Format Salinan</td>
+                            <td>{tandaBukti.format}</td>
+                          </tr>
+                          <tr>
+                            <td>Status Permohonan</td>
+                            <td>
+                              <div className="alert alert-warning">
+                                <b>{tandaBukti.status_permohonan}</b>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Keterangan</td>
+                            <td style={{ color: "red" }} >{tandaBukti.keterangan}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <div className="text-center mt-2 mb-2">
+                        <a
+                          className="btn btn-sm btn-danger me-2"
+                          target="_blank"
+                          href={tandaBukti.link_download}
+                          rel="noreferrer"
+                        >
+                          <i className="fa fa-download"> DOWNLOAD PERMOHONAN </i>
+                        </a>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

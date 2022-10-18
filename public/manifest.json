@@ -1,9 +1,9 @@
 {
   "short_name": "Blitar in Hand",
-  "name": "Create React App Sample",
+  "name": "Blitar In Hand App",
   "icons": [
     {
-      "src": "blitar.png",
+      "src": "../public/security.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },

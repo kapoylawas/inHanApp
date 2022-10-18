@@ -55,8 +55,6 @@ function Verifikasi(props) {
           },
         });
 
-        console.log(response);
-
       })
       .catch((error) => {
         //set state isLoading to "false"
@@ -94,6 +92,7 @@ function Verifikasi(props) {
 
 
         Cookies.set("token", response.data.token);
+        localStorage.setItem("status", JSON.stringify(1));
 
         //redirect dashboard page
         history.push("/admin/dashboard");

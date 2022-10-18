@@ -7,6 +7,9 @@ import Jumbotron from "../../../components/utilities/Jumbotron";
 import LayoutWeb from "../../../layouts/Web";
 
 function Home() {
+
+  document.title = "In Hand App - Home";
+
   return (
     <React.Fragment>
       <LayoutWeb>
@@ -36,9 +39,9 @@ function Home() {
               Blitar Kota In Hand App <br /> Chanel my Youtube.
             </p>
             <div className="divider-custom mx-auto mb-3"></div>
-            <div class="elfsight-app-485c81ed-9430-43f0-8376-b164dc395dd0"></div>
+            <div className="elfsight-app-485c81ed-9430-43f0-8376-b164dc395dd0"></div>
             <h2>Youtube Chanel</h2>
-            <div class="elfsight-app-8c962cd0-ab06-4bc9-b531-95435a34a44c mt-3"></div>
+            <div className="elfsight-app-8c962cd0-ab06-4bc9-b531-95435a34a44c mt-3"></div>
           </div>
           {/* ig */}
           
