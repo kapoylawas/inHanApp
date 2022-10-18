@@ -18,7 +18,6 @@ function WebView() {
             </p>
             <div className="divider-custom mx-auto mb-3"></div>
            
-            <h2>Youtube Chanel</h2>
             <div className="elfsight-app-8c962cd0-ab06-4bc9-b531-95435a34a44c mt-3"></div>
           </div>
           {/* ig */}
