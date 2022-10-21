@@ -20,6 +20,10 @@ import Blikosda from "../pages/web/blikosda/Index";
 import Ulpim from "../pages/web/ulpim/Index";
 import FormPermohonan from "../pages/web/ppid/FormPermohonan";
 import TandaTrima from "../pages/web/ppid/TandaTrima";
+import Web1 from "../pages/web/web1";
+import Mobile from "../pages/web/mobile";
+import Web2 from "../pages/web/web2";
+import Web3 from "../pages/web/web3";
 
 //=======================================================================
 //WEB
@@ -62,6 +66,18 @@ function Routes() {
             </Route>
             <Route exact path="/web/webView">
                  <WebView />
+            </Route>
+            <Route exact path="/web/web1">
+                 <Web1 />
+            </Route>
+            <Route exact path="/web/web2">
+                 <Web2 />
+            </Route>
+            <Route exact path="/web/web3">
+                 <Web3 />
+            </Route>
+            <Route exact path="/web/mobile">
+                 <Mobile />
             </Route>
             <Route exact path="/web/ppid">
                  <Ppid />

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import CardBlikosda from "../../../components/utilities/CardBlikosda";
 import CardPpid from "../../../components/utilities/CardPpid";
@@ -36,9 +37,10 @@ function Home() {
                 fontSize: "1rem",
               }}
             >
-              Blitar Kota In Hand App <br /> Chanel my Youtube.
+              Blitar Kota In Hand App <br />
             </p>
-            <div className="divider-custom mx-auto mb-3"></div>
+            
+            <div className="divider-custom mx-auto mb-5"></div>
             <div className="elfsight-app-485c81ed-9430-43f0-8376-b164dc395dd0"></div>
             <h2>Youtube Chanel</h2>
             <div className="elfsight-app-8c962cd0-ab06-4bc9-b531-95435a34a44c mt-3"></div>
