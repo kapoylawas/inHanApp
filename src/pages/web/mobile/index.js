@@ -1,6 +1,5 @@
 import React from "react"
 import CardMobile from "../../../components/utilities/CardMobile"
-import LayoutWeb from "../../../layouts/Web"
 
 function Mobile(params) {
     return(
