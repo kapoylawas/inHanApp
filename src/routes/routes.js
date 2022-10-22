@@ -25,6 +25,8 @@ import Mobile from "../pages/web/mobile";
 import Web2 from "../pages/web/web2";
 import Web3 from "../pages/web/web3";
 import WebIg from "../pages/web/webIg/Index";
+import Mobile1 from "../pages/web/mobile1/Index";
+import Mobile2 from "../pages/web/mobile2/Index";
 
 //=======================================================================
 //WEB
@@ -83,6 +85,13 @@ function Routes() {
             <Route exact path="/web/mobile">
                  <Mobile />
             </Route>
+            <Route exact path="/web/mobile1">
+                 <Mobile1 />
+            </Route>
+            <Route exact path="/web/mobile2">
+                 <Mobile2 />
+            </Route>
+           
             <Route exact path="/web/ppid">
                  <Ppid />
             </Route>
