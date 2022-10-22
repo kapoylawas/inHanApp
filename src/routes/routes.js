@@ -24,6 +24,7 @@ import Web1 from "../pages/web/web1";
 import Mobile from "../pages/web/mobile";
 import Web2 from "../pages/web/web2";
 import Web3 from "../pages/web/web3";
+import WebIg from "../pages/web/webIg/Index";
 
 //=======================================================================
 //WEB
@@ -66,6 +67,9 @@ function Routes() {
             </Route>
             <Route exact path="/web/webView">
                  <WebView />
+            </Route>
+            <Route exact path="/web/webIg">
+                 <WebIg />
             </Route>
             <Route exact path="/web/web1">
                  <Web1 />
